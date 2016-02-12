@@ -34,11 +34,13 @@ void processCommand(char* command){
   			params[count++] = p;
   		}
         execvp(params[0],params);
+        char* error = strerror(errno);
+        printf("Shell Error: %s\n", error);
         return;
 
 	}else{
 		printf("Loading new process with id %i\n",pid);
 		int status;
-	//	waitpid(pid,&status,0);
+	    waitpid(pid,&status,0);
 	}
 }
